@@ -1,9 +1,9 @@
 from sklearn.decomposition import PCA
 import numpy as np
 import matplotlib.pyplot as plt
-from scrap_actions import scrap_page_action
+from scrap_cotations import get_cotations
 
-df = scrap_page_action()
+df = get_cotations()
 
 print(df)
 

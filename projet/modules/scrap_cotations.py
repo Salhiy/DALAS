@@ -4,11 +4,10 @@ import pandas as pd
 import urllib
 from urllib import request
 import numpy as np 
-import re
-
+from utils import *
 
 #pour recuperer les liens de toutes les pages, car les données peuvent etre sur plusieurs pages
-def liens_pages():
+def link_pages():
 	cotations = 'https://www.boursorama.com/bourse/actions/cotations/'
 
 	request_data = request.urlopen(cotations).read()
@@ -24,7 +23,7 @@ def liens_pages():
 	return res
 
 #lit la page des action et recupere les informations dans un dataframe
-def lire_page_actions(lien):
+def read_page(lien):
 	request_data = request.urlopen(lien).read()
 	page = bs4.BeautifulSoup(request_data, "lxml")
 
@@ -61,12 +60,10 @@ def lire_page_actions(lien):
 	#data frame des actions et leurs valeurs
 	return pd.DataFrame(arr, columns=columns)
 
-def scrap_page_action():
-	liens = liens_pages()
+def get_cotations():
+	liens = link_pages()
 	df = pd.DataFrame()
 	for lien in liens:
-		print(lien)
-		df = pd.concat([df, lire_page_actions(lien)])
+		print(f'lecture du lien {lien}')
+		df = pd.concat([df, read_page(lien)])
 	return df
-
-print(scrap_page_action())
