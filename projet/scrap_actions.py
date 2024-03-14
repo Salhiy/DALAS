@@ -36,22 +36,26 @@ def lire_page_actions(lien):
 
 	#recuperation du titre de la table
 	columns = [titre.get_text().strip() for titre in lignes[0].find_all('th')]
+	columns = columns + ['code']
 
 	#np array pour sauvgarder les valeurs temporerement
-	arr = np.empty(shape=(0, 8), dtype=object) 
+	arr = np.empty(shape=(0, 9), dtype=object) 
 
 	for ligne in lignes[1:]:
 		#recuperations des colones
 		colones = ligne.find_all('td')
 		colone_list = []
+		code = ""
 		for index, colone in enumerate(colones):
 			if (index == 0):
 				colone = colone.find('a')
+				code = colone.get('href').replace('/', '').replace('cours', '')
 				colone_list.append(colone.get_text().strip())
 			else:
 				formated_string = re.sub(r"[^\d.-]", "", colone.get_text().strip())
 				formated_string = re.sub(r"\s", "", formated_string)
 				colone_list.append(float(formated_string))
+		colone_list.append(code)
 		arr = np.append(arr, np.array([colone_list]), axis=0)
 
 	#data frame des actions et leurs valeurs
@@ -64,3 +68,5 @@ def scrap_page_action():
 		print(lien)
 		df = pd.concat([df, lire_page_actions(lien)])
 	return df
+
+print(scrap_page_action())
