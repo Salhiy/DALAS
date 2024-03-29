@@ -46,8 +46,3 @@ def get_history(code, duration):
 		df = pd.concat([df, get_history_per_page(code, duration, int(page))])
 
 	return df
-
-
-
-
-print(get_history('1rPAB', 4))
