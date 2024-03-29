@@ -1,3 +1,7 @@
+"""
+	recuperer les données boursieres via le site boursorama.com/bourse des 
+	plus grande entreprise francaise
+"""
 import bs4
 import lxml
 import pandas as pd

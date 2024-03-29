@@ -13,3 +13,8 @@ def get_abs_path(path):
 def convert_to_unix(date):
 	datum = datetime.strptime(date, '%d-%m-%Y')
 	return int(mktime(datum.timetuple()))
+
+def format_date(date):
+	date_obj = datetime.strptime(date, "%d%m%Y")
+	url_date = date_obj.strftime("%d-%m-%Y")
+	return "%2F".join(url_date.split("-"))

@@ -13,7 +13,7 @@ dow_30_tickers = [
     "NKE", "PG", "CRM", "TRV", "UNH", "VZ", "V", "WBA", "WMT", "DIS"
 ]
 
-start_date = '01-01-2022'
+start_date = '01-01-2009'
 end_date = '01-01-2023'
 
 def load_from_api():
