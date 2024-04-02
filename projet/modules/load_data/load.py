@@ -12,7 +12,7 @@ from load_with_api import *
 from scrap_company import *
 import pandas as pd
 
-MAX_DURATION = 10
+MAX_DURATION = 6
 
 #pretraimemnt sur les données de bourse francaise pour macher avec les données
 #de bourse amercaine

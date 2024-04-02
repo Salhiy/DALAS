@@ -16,12 +16,16 @@ dow_30_tickers = [
 start_date = '01-01-2009'
 end_date = '01-01-2023'
 
-def load_from_api():
+def load_from_api(verbose=False):
 	df = pd.DataFrame()
 	for ticker in dow_30_tickers:
 		url = f"https://query1.finance.yahoo.com/v7/finance/download/{ticker}?period1={convert_to_unix(start_date)}&period2={convert_to_unix(end_date)}&interval=1d&events=history"
+		if (verbose):
+			print(f"Envoie d'une requete api sur le lien : {url}")
 		response = requests.get(url, headers = {'User-agent': 'your bot 0.1'})
 		df_csv = pd.read_csv(StringIO(response.text))
 		df_csv['LIBELLÉ'] = ticker
 		df = pd.concat([df_csv, df])
 	return df.sample(frac=1)
+
+print(load_from_api(verbose=True))
