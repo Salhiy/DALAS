@@ -64,10 +64,11 @@ def read_page(lien):
 	#data frame des actions et leurs valeurs
 	return pd.DataFrame(arr, columns=columns)
 
-def get_cotations():
+def get_cotations(verbose=False):
 	liens = link_pages()
 	df = pd.DataFrame()
 	for lien in liens:
-		print(f'lecture du lien {lien}')
+		if (verbose):
+			print(f'lecture du lien {lien}')
 		df = pd.concat([df, read_page(lien)])
 	return df

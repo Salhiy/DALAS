@@ -14,7 +14,11 @@ def convert_to_unix(date):
 	datum = datetime.strptime(date, '%d-%m-%Y')
 	return int(mktime(datum.timetuple()))
 
-def format_date(date):
+def url_date(date):
 	date_obj = datetime.strptime(date, "%d%m%Y")
 	url_date = date_obj.strftime("%d-%m-%Y")
 	return "%2F".join(url_date.split("-"))
+
+def format_date(date):
+	date_obj = datetime.strptime(date, "%d%m%Y")
+	return date_obj.strftime("%Y-%m-%d")
